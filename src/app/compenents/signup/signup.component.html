@@ -1,0 +1,80 @@
+<form [formGroup]="SignupForm" (ngSubmit)="signupSubmitted()" class="border p-3">
+    <div class="row g-0">
+        <div class="col text-center p-2 mb-3">
+            <span class="fs-3">Signup</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col  mb-3">
+            <label for ="firstname" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstname" formControlName="firstname">
+            <div class="form-text text-danger"  *ngIf="FirstName.errors?.['required'] && (FirstName.touched || FirstName.dirty )">First Name required</div>
+            <div class="form-text text-danger"  *ngIf="FirstName.errors?.['minlength'] && (FirstName.touched || FirstName.dirty )">First Name is too short</div>
+        </div>
+        <div class="col  mb-3">
+            <label for ="lastname" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastname" formControlName="lastname">
+            <div class="form-text text-danger"  *ngIf="LastName.errors?.['required'] && (LastName.touched || LastName.dirty )">Last Name required</div>
+            <div class="form-text text-danger"  *ngIf="LastName.errors?.['minlength'] && (LastName.touched || LastName.dirty )">Last Name is too short</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for ="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" formControlName="email">
+            <div class="form-text text-danger"  *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty )">Email required</div>
+            <div class="form-text text-danger"  *ngIf="Email.errors?.['email'] && (Email.touched || Email.dirty )">Email is invalid</div>
+        </div>  
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for ="mobile" class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" id="mobile" formControlName="mobile">
+            <div class="form-text text-danger"  *ngIf="Mobile.errors?.['required'] && (Mobile.touched || Mobile.dirty )">Email required</div>
+            <div class="form-text text-danger"  *ngIf="Mobile.errors?.['minlength'] && (Mobile.touched || Mobile.dirty )">Mobile Number is invalid</div>
+        </div>  
+        <div class="col ps-3 mb-3">
+            <div class="m-1">Gender</div>
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" value="m" id="male" formControlName="gender">
+                <label class="form-check-label" for="male">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" value="f" id="female" formControlName="gender">
+                <label class="form-check-label" for="female">Female</label>
+            </div>
+            <div class="form-text text-danger"  *ngIf="Gender.errors?.['required']">Gender required</div>
+
+        </div>  
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for ="pwd" class="form-label">Password</label>
+            <input type="password" class="form-control" id="pwd" formControlName="pwd">
+            <div class="form-text"></div>
+            <div class="form-text text-danger"  *ngIf="Pwd.errors?.['required'] && (Pwd.touched || Pwd.dirty )">Password required</div>
+            <div class="form-text text-danger"  *ngIf="Pwd.errors?.['minlength'] && (Pwd.touched || Pwd.dirty )">Password is too short</div>
+            <div class="form-text text-danger"  *ngIf="Pwd.errors?.['maxlength'] && (Pwd.touched || Pwd.dirty )">Password is too long</div>
+        </div> 
+        <div class="col mb-3">
+            <label for ="rpwd" class="form-label">Repeat Password</label>
+            <input type="password" class="form-control" id="rpwd" formControlName="rpwd">
+            <div class="form-text text-danger" [ngStyle]="{'display':repeatPass}" >Repeat password is wrong</div>            
+        </div>       
+    </div> 
+    <div class="row">
+        <div class="col  mb-3 text-center">
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary"  [disabled]="SignupForm.invalid" >Submit</button>  
+                <!-- {{SignupForm.invalid}} -->
+            </div>
+        </div> 
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <div class="d-grid">
+                <a routerLink="/sign-in">Sign In</a>            
+            </div>
+        </div> 
+    </div>
+</form>
